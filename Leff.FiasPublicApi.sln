@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leff.FiasPublicApi", "Leff.FiasPublicApi.csproj", "{4D6274F6-55F1-4949-8324-E51A7B948EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leff.FiasPublicApi", "Leff.FiasPublicApi\Leff.FiasPublicApi.csproj", "{4D6274F6-55F1-4949-8324-E51A7B948EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leff.FiasPublicApi.Test", "Leff.FiasPublicApi.Test\Leff.FiasPublicApi.Test.csproj", "{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4D6274F6-55F1-4949-8324-E51A7B948EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D6274F6-55F1-4949-8324-E51A7B948EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D6274F6-55F1-4949-8324-E51A7B948EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
