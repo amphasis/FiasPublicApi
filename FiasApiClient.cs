@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using Leff.FiasPublicApi.Models;
+using Leff.FiasPublicApi.Tools;
 
 namespace Leff.FiasPublicApi
 {
@@ -20,37 +25,51 @@ namespace Leff.FiasPublicApi
             _httpClient.BaseAddress = new Uri(BaseUrl);
         }
 
-        public void A()
+        public async Task<IList<FiasObject>> GetChildObjectsAsync(FiasObjectDetails parentObject,
+            FiasObjectLevelId levelId, bool administrativeHierarchy = false,
+            CancellationToken cancellationToken = default)
         {
-            /*
-             * GetRegions (levelId 1)
-             * GetDistricts (levelId 2) (только административное деление)
-             * GetMunDistricts (levelId 3) (только муниципальное деление)
-             * Get(Mun)CitySettlements (levelId 4)
-             * Get(Mun)Cities (levelId 5)
-             * Get(Mun)Settlements (levelId 6)
-             * Get(Mun)PlanStructures (levelId 7)
-             * Get(Mun)Streets (levelId 8)
-             * Get(Mun)Steads (levelId 9)
-             * Get(Mun)Houses (levelId 10)
-             * GetApartments (levelId 11)
-             * GetRooms (levelId 12)
-             * GetCarPlaces (levelId 17)
-             */
-            
-            /*
-            isMunHierarchy=true/false
-            regionId=454811
-            districtId=
-            munDistrictId= 
-            citySettlementId=
-            cityId=
-            settlementId=435054
-            planStructId=
-            streetId=95787681
-            houseId=
-            apartmentId=
-            */
+            if (parentObject == null) throw new ArgumentNullException(nameof(parentObject));
+
+            string parentObjectId = parentObject.ObjectId.ToString(CultureInfo.InvariantCulture);
+            var hierarchy = new FiasHierarchy().SetObjectIdByLevelId(parentObject.LevelId, parentObjectId);
+
+            return await GetChildObjectsAsync(hierarchy, levelId, administrativeHierarchy, cancellationToken);
+        }
+
+        public async Task<IList<FiasObject>> GetChildObjectsAsync(FiasHierarchy hierarchy, FiasObjectLevelId levelId,
+            bool administrativeHierarchy = false, CancellationToken cancellationToken = default)
+        {
+            if (hierarchy == null) throw new ArgumentNullException(nameof(hierarchy));
+
+            string endpoint = levelId.GetChildObjectSearchEndpointName(administrativeHierarchy);
+            string query = hierarchy.GetQueryStringByLevelId(levelId);
+            string uriString = $"Search/{endpoint}?{query}";
+            var uri = new Uri(uriString, UriKind.Relative);
+
+            using (var response = await _httpClient.GetAsync(uri, cancellationToken))
+            {
+                response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadJsonObjectAsync<IList<FiasObject>>();
+
+                return result;
+            }
+        }
+
+        public async Task<ExtendedSearchResponse> ExtendedSearchAsync<T>(T extendedSearchRequest,
+            CancellationToken cancellationToken = default) where T : SearchRequestBase
+        {
+            if (extendedSearchRequest == null) throw new ArgumentNullException(nameof(extendedSearchRequest));
+
+            var uri = new Uri("ExtendedSearch/PubExtSearch", UriKind.Relative);
+            using (var content = new JsonContent(extendedSearchRequest))
+            using (var response = await _httpClient.PostAsync(uri, content, cancellationToken))
+            {
+                response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadJsonObjectAsync<ExtendedSearchResponse>();
+
+                return result;
+            }
         }
     }
 }

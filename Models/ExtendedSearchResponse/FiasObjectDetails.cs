@@ -42,7 +42,7 @@ namespace Leff.FiasPublicApi.Models
         public string Guid { get; set; }
 
         [JsonProperty("LevelId")]
-        public int LevelId { get; set; }
+        public FiasObjectLevelId LevelId { get; set; }
 
         [JsonProperty("RegionCode")]
         public string RegionCode { get; set; }

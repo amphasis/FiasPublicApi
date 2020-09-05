@@ -53,6 +53,6 @@ namespace Leff.FiasPublicApi.Models
         public string Room { get; set; }
 
         [JsonProperty("AdmHierarchy")]
-        private Hierarchy AdministrativeHierarchy => Hierarchy;
+        private FiasHierarchy AdministrativeHierarchy => Hierarchy;
     }
 }

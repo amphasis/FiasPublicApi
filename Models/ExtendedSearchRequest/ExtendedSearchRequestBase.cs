@@ -32,6 +32,6 @@ namespace Leff.FiasPublicApi.Models
         public string ObjectLevelFias { get; set; }
 
         [JsonIgnore]
-        public Hierarchy Hierarchy { get; set; }
+        public FiasHierarchy Hierarchy { get; set; }
     }
 }
