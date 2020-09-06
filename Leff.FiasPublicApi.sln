@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leff.FiasPublicApi", "Leff.FiasPublicApi\Leff.FiasPublicApi.csproj", "{4D6274F6-55F1-4949-8324-E51A7B948EA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leff.FiasPublicApi.Test", "Leff.FiasPublicApi.Test\Leff.FiasPublicApi.Test.csproj", "{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leff.FiasPublicApi.Test", "Leff.FiasPublicApi.Test\Leff.FiasPublicApi.Test.csproj", "{471BB48D-A34C-4DAE-BB30-0E9AEBA113C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget-cd", "nuget-cd", "{E34B6E23-AE21-455B-8EFD-B9B0A2E88B69}"
+	ProjectSection(SolutionItems) = preProject
+		Package.nuspec = Package.nuspec
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

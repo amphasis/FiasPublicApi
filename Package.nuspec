@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Leff.FiasPublicApi</id>
+    <version>1.0.0</version>
+    <authors>Leff</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://project.url</projectUrl>
+    <iconUrl>https://fias.nalog.ru/images/logo2.png</iconUrl>
+    <description>https://fias.nalog.ru/ API client</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Leff 2020</copyright>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="12.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Leff.FiasPublicApi\bin\Release\netstandard2.0\Leff.FiasPublicApi.dll" target="lib" />
+    <file src="Leff.FiasPublicApi\bin\Release\netstandard2.0\Leff.FiasPublicApi.pdb" target="lib" />
+  </files>
+</package>
