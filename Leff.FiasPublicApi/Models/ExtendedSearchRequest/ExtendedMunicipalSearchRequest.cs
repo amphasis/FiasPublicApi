@@ -2,7 +2,7 @@
 
 namespace Leff.FiasPublicApi.Models
 {
-    public class ExtendedMunicipalSearchRequest : ExtendedSearchRequestBase
+    public class ExtendedMunicipalSearchRequest : MunicipalSearchRequest
     {
         [JsonProperty("MunHierarchy.Region_input")]
         public string RegionInput { get; set; }
@@ -52,8 +52,5 @@ namespace Leff.FiasPublicApi.Models
 
         [JsonProperty("MunHierarchy.Room")]
         public string Room { get; set; }
- 
-        [JsonProperty("MunHierarchy")]
-        private FiasHierarchy MunicipalHierarchy => Hierarchy;
-   }
+    }
 }

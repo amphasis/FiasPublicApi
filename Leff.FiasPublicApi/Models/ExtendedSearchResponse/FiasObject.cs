@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Leff.FiasPublicApi.Models
 {
+    [DebuggerDisplay("{Id} {Name}")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class FiasObject
     {

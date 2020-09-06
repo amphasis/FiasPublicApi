@@ -1,15 +1,24 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace Leff.FiasPublicApi.Models
 {
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public class SearchRequestBase
     {
-        [JsonProperty("GUID")]
-        public string Guid { get; set; }
+        public SearchRequestBase()
+        {
+            Take = 5;
+        }
 
         [JsonProperty("Division")]
-        public string Division { get; set; }
+        private string Division => "1";
+
+        [JsonIgnore]
+        public Guid? Guid { get; set; }
+
+        [JsonProperty("GUID")]
+        private string SerializableGuid => Guid?.ToString() ?? "";
 
         [JsonProperty("skip")]
         public int Skip { get; set; }

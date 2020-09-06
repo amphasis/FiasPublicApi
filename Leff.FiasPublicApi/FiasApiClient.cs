@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,8 +30,7 @@ namespace Leff.FiasPublicApi
         {
             if (parentObject == null) throw new ArgumentNullException(nameof(parentObject));
 
-            string parentObjectId = parentObject.ObjectId.ToString(CultureInfo.InvariantCulture);
-            var hierarchy = new FiasHierarchy().SetObjectIdByLevelId(parentObject.LevelId, parentObjectId);
+            var hierarchy = new FiasHierarchy(parentObject.LevelId, parentObject.ObjectId);
 
             return await GetChildObjectsAsync(hierarchy, levelId, administrativeHierarchy, cancellationToken);
         }
@@ -43,7 +41,7 @@ namespace Leff.FiasPublicApi
             if (hierarchy == null) throw new ArgumentNullException(nameof(hierarchy));
 
             string endpoint = levelId.GetChildObjectSearchEndpointName(administrativeHierarchy);
-            string query = hierarchy.GetQueryStringByLevelId(levelId);
+            string query = hierarchy.GetQueryStringByLevelId(levelId, administrativeHierarchy);
             string uriString = $"Search/{endpoint}?{query}";
             var uri = new Uri(uriString, UriKind.Relative);
 

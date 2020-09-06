@@ -2,7 +2,7 @@
 
 namespace Leff.FiasPublicApi.Models
 {
-    public class ExtendedAdministrativeSearchRequest : ExtendedSearchRequestBase
+    public class ExtendedAdministrativeSearchRequest : AdministrativeSearchRequest
     {
         [JsonProperty("AdmHierarchy.Region_input")]
         public string RegionInput { get; set; }
@@ -51,8 +51,5 @@ namespace Leff.FiasPublicApi.Models
 
         [JsonProperty("AdmHierarchy.Room")]
         public string Room { get; set; }
-
-        [JsonProperty("AdmHierarchy")]
-        private FiasHierarchy AdministrativeHierarchy => Hierarchy;
     }
 }

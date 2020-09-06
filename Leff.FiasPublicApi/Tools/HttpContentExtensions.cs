@@ -23,7 +23,7 @@ namespace Leff.FiasPublicApi.Tools
             bool isValidMediaType = mediaType.Equals(expectedMediaType, StringComparison.OrdinalIgnoreCase);
             if (isValidMediaType) return httpContent;
 
-            string message = $"Invalid response media type: {mediaType}. Expected: {expectedMediaType}";
+            string message = $"Invalid response media type \"{mediaType}\", expected \"{expectedMediaType}\".";
             throw new HttpRequestException(message);
         }
 

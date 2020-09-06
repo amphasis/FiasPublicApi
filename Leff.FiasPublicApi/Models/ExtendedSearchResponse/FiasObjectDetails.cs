@@ -39,7 +39,7 @@ namespace Leff.FiasPublicApi.Models
         public FiasParameters Parameters { get; set; }
 
         [JsonProperty("GUID")]
-        public string Guid { get; set; }
+        public Guid Guid { get; set; }
 
         [JsonProperty("LevelId")]
         public FiasObjectLevelId LevelId { get; set; }
