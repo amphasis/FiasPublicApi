@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,6 +23,36 @@ namespace Leff.FiasPublicApi
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BaseUrl);
+        }
+
+        public async Task<ExtendedSearchResponse> ExtendedSearchAsync(Guid fiasGuid,
+            CancellationToken cancellationToken = default)
+        {
+            var searchRequest = new SearchRequestBase {Guid = fiasGuid};
+            return await ExtendedSearchAsync(searchRequest, cancellationToken);
+        }
+
+        public async Task<ExtendedSearchResponse> ExtendedSearchAsync(FiasObjectLevelId levelId, int objectId,
+            CancellationToken cancellationToken = default)
+        {
+            var hierarchy = new FiasHierarchy(levelId, objectId);
+            var searchRequest = new MunicipalSearchRequest {Hierarchy = hierarchy};
+            return await ExtendedSearchAsync(searchRequest, cancellationToken);
+        }
+
+        public async Task<IList<FiasObject>> GetChildObjectsAsync(Guid fiasGuid, FiasObjectLevelId levelId,
+            CancellationToken cancellationToken = default)
+        {
+            var searchResponse = await ExtendedSearchAsync(fiasGuid, cancellationToken);
+            var fiasObject = searchResponse.Data.FirstOrDefault();
+            
+            if (fiasObject == null)
+            {
+                string message = $"FIAS object {fiasGuid} not found";
+                throw new InvalidOperationException(message);
+            }
+
+            return await GetChildObjectsAsync(fiasObject, levelId, cancellationToken: cancellationToken);
         }
 
         public async Task<IList<FiasObject>> GetChildObjectsAsync(FiasObjectDetails parentObject,

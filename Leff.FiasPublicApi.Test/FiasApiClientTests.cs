@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Leff.FiasPublicApi.Models;
-using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace Leff.FiasPublicApi.Test
