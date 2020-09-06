@@ -6,7 +6,7 @@
     <authors>Leff</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
-    <projectUrl>https://project.url</projectUrl>
+    <projectUrl>https://github.com/amphasis/FiasPublicApi</projectUrl>
     <iconUrl>https://fias.nalog.ru/images/logo2.png</iconUrl>
     <description>https://fias.nalog.ru/ API client</description>
     <releaseNotes></releaseNotes>
